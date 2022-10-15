@@ -1,0 +1,7 @@
+[submodule "libs/speedykv"]
+	path = libs/speedykv
+	url = https://github.com/ozxybox/SpeedyKeyV.git
+	branch = a
+[submodule "libs/fmt"]
+	path = libs/fmt
+	url = https://github.com/fmtlib/fmt.git
