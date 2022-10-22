@@ -3,8 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/libs/SteamAppPathProvider" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/libs/SteamAppPathProvider/libs/SpeedyKeyV" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/libs/SteamAppPathProvider/libs/fmt" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/libs/fmt" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/libs/speedykv" vcs="Git" />
   </component>

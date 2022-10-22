@@ -1,6 +1,4 @@
 cmake-build-debug
 build
 
-libs/fmt
-libs/steam
-libs/speedykv
+libs/

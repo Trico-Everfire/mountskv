@@ -26,6 +26,7 @@ namespace ui {
 		QPushButton *m_importButton;
 		KeyValueRoot* GenerateMountKV();
 
+		void ImportMounts( QString file );
 	};
 
 } // ui

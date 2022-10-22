@@ -5,3 +5,7 @@
 [submodule "libs/fmt"]
 	path = libs/fmt
 	url = https://github.com/fmtlib/fmt.git
+[submodule "libs/SteamAppPathProvider"]
+	path = libs/SteamAppPathProvider
+	url = https://github.com/Trico-Everfire/SteamAppPathProvider.git
+	branch = feat/ex_functs
