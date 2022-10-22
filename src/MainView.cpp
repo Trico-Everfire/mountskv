@@ -83,11 +83,9 @@ namespace ui
 
 		connect( m_exportButton, &QPushButton::pressed, [this]()
 				 {
-					 QFileDialog *fd = new QFileDialog( this, "Save Mount.kv", "./", "*.kv" );
-					 fd->exec();
-					 if ( fd->selectedFiles().isEmpty() )
+					 QString savePath = QFileDialog::getSaveFileName( this, "Save Mount.kv", "./", "*.kv" );
+					 if(savePath.isEmpty())
 						 return;
-					 QString savePath = fd->selectedFiles()[0];
 					 auto mountskv = GenerateMountKV();
 					 auto file = QFile( savePath );
 					 file.open( QFile::WriteOnly );
