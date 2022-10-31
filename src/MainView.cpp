@@ -33,6 +33,7 @@ namespace ui
 		m_treeWidget->setDragDropMode( QAbstractItemView::InternalMove );
 
 		auto appids = m_steamGameProvider->GetInstalledAppsEX();
+		qInfo() << &appids;
 		QStringList installDirs;
 		for ( int i = 0; i < m_steamGameProvider->GetNumInstalledApps() + 1; i++ )
 		{
