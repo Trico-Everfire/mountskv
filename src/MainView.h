@@ -24,7 +24,7 @@ namespace ui {
 		CFileSystemSearchProvider *m_steamGameProvider = new CFileSystemSearchProvider();
 		QPushButton *m_exportButton;
 		QPushButton *m_importButton;
-		KeyValueRoot* GenerateMountKV() const;
+		[[nodiscard]] KeyValueRoot* GenerateMountKV() const;
 
 		#ifdef IMPORT_MOUNT
 			void ImportMounts( QString file );
