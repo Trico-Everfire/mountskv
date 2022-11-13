@@ -73,8 +73,10 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: p2-publishing-tool-windows-${{matrix.build_type}}
+          name: mountskv-windows-${{matrix.build_type}}
           path: |
             ${{github.workspace}}\build\mountskv.exe
             ${{github.workspace}}\build\*.dll
+            ${{github.workspace}}\build\*.pdb
             ${{github.workspace}}\build\platforms\*.dll
+            
