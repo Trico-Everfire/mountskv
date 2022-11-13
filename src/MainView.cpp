@@ -59,7 +59,7 @@ namespace ui
 				PathResolver( item, paths );
 				item->sortChildren( 0, Qt::SortOrder::AscendingOrder );
 
-				QPixmap im( _strdup( game->icon ) );
+				QPixmap im( strdup( game->icon ) );
 				item->setIcon( 0, QIcon( im ) );
 				m_treeWidget->addTopLevelItem( item );
 				delete game;
