@@ -35,7 +35,7 @@ namespace ui
 		auto appids = m_steamGameProvider->GetInstalledAppsEX();
 		qInfo() << &appids;
 		QStringList installDirs;
-		for ( int i = 0; i < m_steamGameProvider->GetNumInstalledApps() + 1; i++ )
+		for ( int i = 0; i < m_steamGameProvider->GetNumInstalledApps(); i++ )
 		{
 			if ( m_steamGameProvider->BIsSourceGame( appids[i] ) )
 			{
