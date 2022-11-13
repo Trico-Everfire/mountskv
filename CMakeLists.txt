@@ -69,9 +69,13 @@ target_include_directories(${PROJECT_NAME} PRIVATE "${QT_INCLUDE} ${QT_INCLUDE}/
 if(WIN32)
     # Copy these to bundle them with the program in releases
     configure_file("${QT_BASEDIR}/bin/Qt5Core.dll"    "${CMAKE_BINARY_DIR}/Qt5Core.dll"    COPYONLY)
+    configure_file("${QT_BASEDIR}/bin/Qt5Cored.dll"    "${CMAKE_BINARY_DIR}/Qt5Cored.dll"    COPYONLY)
     configure_file("${QT_BASEDIR}/bin/Qt5Gui.dll"     "${CMAKE_BINARY_DIR}/Qt5Gui.dll"     COPYONLY)
+    configure_file("${QT_BASEDIR}/bin/Qt5Guid.dll"     "${CMAKE_BINARY_DIR}/Qt5Guid.dll"     COPYONLY)
     configure_file("${QT_BASEDIR}/bin/Qt5Widgets.dll" "${CMAKE_BINARY_DIR}/Qt5Widgets.dll" COPYONLY)
+    configure_file("${QT_BASEDIR}/bin/Qt5Widgetsd.dll" "${CMAKE_BINARY_DIR}/Qt5Widgetsd.dll" COPYONLY)
     configure_file("${QT_BASEDIR}/bin/Qt5Network.dll" "${CMAKE_BINARY_DIR}/Qt5Network.dll" COPYONLY)
+    configure_file("${QT_BASEDIR}/bin/Qt5Networkd.dll" "${CMAKE_BINARY_DIR}/Qt5Networkd.dll" COPYONLY)
     configure_file("${QT_BASEDIR}/plugins/platforms/qwindows.dll"         "${CMAKE_BINARY_DIR}/platforms/qwindows.dll"         COPYONLY)
     configure_file("${QT_BASEDIR}/plugins/platforms/qwindowsd.dll"        "${CMAKE_BINARY_DIR}/platforms/qwindowsd.dll"        COPYONLY)
 elseif(UNIX)

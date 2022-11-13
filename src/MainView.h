@@ -15,18 +15,20 @@ namespace ui {
 
     class CMainView : public QDialog {
 		Q_OBJECT
-		void PathResolver (QTreeWidgetItem* parent, fs::path sPath);
-		void dirvpk(QTreeWidgetItem *item, QString str, KeyValue* kv);
-		void hasChildHierarchy(QTreeWidgetItem *item, bool& isValid);
+		void PathResolver (QTreeWidgetItem* parent, const fs::path& sPath);
+		static void dirvpk(QTreeWidgetItem *item, const QString& str, KeyValue* kv);
+		static void hasChildHierarchy(QTreeWidgetItem *item, bool& isValid);
 	public:
 		explicit CMainView(QWidget* pParent);
 		QTreeWidget *m_treeWidget;
 		CFileSystemSearchProvider *m_steamGameProvider = new CFileSystemSearchProvider();
 		QPushButton *m_exportButton;
 		QPushButton *m_importButton;
-		KeyValueRoot* GenerateMountKV();
+		[[nodiscard]] KeyValueRoot* GenerateMountKV() const;
 
-		void ImportMounts( QString file );
+		#ifdef IMPORT_MOUNT
+			void ImportMounts( QString file );
+		#endif
 	};
 
 } // ui

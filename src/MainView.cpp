@@ -45,7 +45,7 @@ namespace ui
 					continue;
 				installDirs.append( game->installDir );
 
-				QTreeWidgetItem *item = new QTreeWidgetItem();
+				auto *item = new QTreeWidgetItem();
 				item->setCheckState( 0, Qt::Unchecked );
 				item->setData( 0, Qt::UserRole, game->appid );
 
@@ -56,14 +56,10 @@ namespace ui
 				paths.append( "common" );
 				paths.append( game->installDir );
 
-				QString pathFolder = "null";
-				fs::path vPath = paths;
-				QStringList pathList;
-
 				PathResolver( item, paths );
 				item->sortChildren( 0, Qt::SortOrder::AscendingOrder );
 
-				QPixmap im( strdup( game->icon ) );
+				QPixmap im( _strdup( game->icon ) );
 				item->setIcon( 0, QIcon( im ) );
 				m_treeWidget->addTopLevelItem( item );
 				delete game;
@@ -102,7 +98,7 @@ namespace ui
 		layout->addWidget( m_importButton, 1, 1 );
 	}
 
-	KeyValueRoot *CMainView::GenerateMountKV()
+	KeyValueRoot *CMainView::GenerateMountKV() const
 	{
 		auto mountskv = new KeyValueRoot();
 		auto mounts = mountskv->AddNode( "Mounts" );
@@ -117,7 +113,7 @@ namespace ui
 				auto child = item->child( j );
 				bool isValid = false;
 				hasChildHierarchy( child, isValid );
-				if ( isValid == true || child->checkState( 0 ) == Qt::Checked )
+				if ( isValid || child->checkState( 0 ) == Qt::Checked )
 				{
 					auto node = kv->AddNode( child->data( 0, Qt::UserRole ).toString().toStdString().substr( 1 ).c_str() );
 					QString str;
@@ -129,29 +125,29 @@ namespace ui
 		return mountskv;
 	}
 
-	void CMainView::PathResolver( QTreeWidgetItem *parent, fs::path sPath )
+	void CMainView::PathResolver( QTreeWidgetItem *parent, const fs::path& sPath )
 	{
 		for ( auto &dir : fs::directory_iterator( sPath, fs::directory_options::skip_permission_denied ) )
 		{
-			auto currentPath = dir.path().string().substr( sPath.string().length() );
+			auto currentPath = dir.path().wstring().substr( sPath.wstring().length() );
 			if ( dir.is_directory() )
 			{
-				QTreeWidgetItem *item = new QTreeWidgetItem();
-				item->setText( 0, currentPath.substr( 1 ).c_str() );
-				item->setData( 0, Qt::UserRole, QString( currentPath.c_str() ) );
+				auto *item = new QTreeWidgetItem();
+				item->setText( 0, QString::fromWCharArray( currentPath.substr( 1 ).c_str() ) );
+				item->setData( 0, Qt::UserRole, QString::fromWCharArray( currentPath.c_str() ) );
 				item->setCheckState( 0, Qt::CheckState::Unchecked );
 				parent->addChild( item );
-				sPath.string().append( currentPath );
-				PathResolver( item, fs::path( sPath.string().append( currentPath ) ) );
+				sPath.wstring().append( currentPath );
+				PathResolver( item, fs::path( sPath.wstring().append( currentPath ) ) );
 				item->sortChildren( 0, Qt::SortOrder::AscendingOrder );
 			}
-			if ( currentPath.ends_with( "_dir.vpk" ) )
+			if ( currentPath.ends_with( L"_dir.vpk" ) )
 			{
-				QTreeWidgetItem *item = new QTreeWidgetItem();
+				auto *item = new QTreeWidgetItem();
 				item->setIcon( 0, QIcon( ":/resource/VPK.jpg" ) );
 				item->setCheckState( 0, Qt::CheckState::Unchecked );
-				item->setData( 0, Qt::UserRole, QString( currentPath.c_str() ) );
-				item->setText( 0, currentPath.substr( 1 ).c_str() );
+				item->setData( 0, Qt::UserRole, QString::fromWCharArray( currentPath.c_str() ) );
+				item->setText( 0, QString::fromWCharArray( currentPath.substr(1).c_str() ) );
 				parent->addChild( item );
 			}
 		}
@@ -203,7 +199,7 @@ namespace ui
 	}
 #endif
 
-	void CMainView::dirvpk( QTreeWidgetItem *item, QString str, KeyValue *kv )
+	void CMainView::dirvpk( QTreeWidgetItem *item, const QString& str, KeyValue *kv )
 	{
 		for ( int j = 0; j < item->childCount(); j++ )
 		{

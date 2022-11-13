@@ -20,7 +20,7 @@ int main( int argc, char **argv )
     QApplication::setAttribute( Qt::AA_DisableWindowContextHelpButton );
 
     auto pDialog = new ui::CMainView( nullptr );
-	if(!pDialog->m_steamGameProvider->Available()){
+	if(!pDialog->m_steamGameProvider->Available()) {
 		QMessageBox::critical(nullptr,"Game Fetching Error", "There was an error getting your game library, either your libraryfolders.vdf is corrupt or you have no games installed on your computer.");
 		return EXIT_FAILURE;
 	}
