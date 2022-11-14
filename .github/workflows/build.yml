@@ -33,7 +33,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: p2-publishing-tool-linux-${{matrix.build_type}}
+          name: mountskv-linux-${{matrix.build_type}}
           path: |
             ${{github.workspace}}/build/mountskv
             ${{github.workspace}}/build/platforms/**
