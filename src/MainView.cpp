@@ -129,25 +129,25 @@ namespace ui
 	{
 		for ( auto &dir : fs::directory_iterator( sPath, fs::directory_options::skip_permission_denied ) )
 		{
-			auto currentPath = dir.path().wstring().substr( sPath.wstring().length() );
+			auto currentPath = dir.path().u16string().substr( sPath.u16string().length() );
 			if ( dir.is_directory() )
 			{
 				auto *item = new QTreeWidgetItem();
-				item->setText( 0, QString::fromWCharArray( currentPath.substr( 1 ).c_str() ) );
-				item->setData( 0, Qt::UserRole, QString::fromWCharArray( currentPath.c_str() ) );
+				item->setText( 0, QString::fromStdU16String( currentPath.substr( 1 ).c_str() ) );
+				item->setData( 0, Qt::UserRole, QString::fromStdU16String( currentPath.c_str() ) );
 				item->setCheckState( 0, Qt::CheckState::Unchecked );
 				parent->addChild( item );
-				sPath.wstring().append( currentPath );
-				PathResolver( item, fs::path( sPath.wstring().append( currentPath ) ) );
+				sPath.u16string().append( currentPath );
+				PathResolver( item, fs::path( sPath.u16string().append( currentPath ) ) );
 				item->sortChildren( 0, Qt::SortOrder::AscendingOrder );
 			}
-			if ( currentPath.ends_with( L"_dir.vpk" ) )
+			if ( currentPath.ends_with( u"_dir.vpk" ) )
 			{
 				auto *item = new QTreeWidgetItem();
 				item->setIcon( 0, QIcon( ":/resource/VPK.jpg" ) );
 				item->setCheckState( 0, Qt::CheckState::Unchecked );
-				item->setData( 0, Qt::UserRole, QString::fromWCharArray( currentPath.c_str() ) );
-				item->setText( 0, QString::fromWCharArray( currentPath.substr(1).c_str() ) );
+				item->setData( 0, Qt::UserRole, QString::fromStdU16String( currentPath.c_str() ) );
+				item->setText( 0, QString::fromStdU16String( currentPath.substr(1).c_str() ) );
 				parent->addChild( item );
 			}
 		}
